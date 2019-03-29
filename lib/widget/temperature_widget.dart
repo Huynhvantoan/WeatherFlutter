@@ -19,14 +19,14 @@ class TemperatureWeather extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        Padding(padding: EdgeInsets.only(right: 20), child: Text(''),),
+        Padding(padding: EdgeInsets.only(right: 10), child: Text('${_formattedTemperature(temperature)}°', style: TextStyle(fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),),),
         Column(
           children: <Widget>[
-            Text('Max: ${_formattedTemperature(high)}',
+            Text('Max: ${_formattedTemperature(high)}°',
               style: TextStyle(color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w100),),
-            Text('Min: ${_formattedTemperature(low)}',
+            Text('Min: ${_formattedTemperature(low)}°',
               style: TextStyle(color: Colors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w100),)

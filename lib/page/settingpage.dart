@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather/blocs/blocs.dart';
 
-class SettingPage extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _SettingState();
-}
-
-class _SettingState extends State<SettingPage> {
+class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    final blocSetting = BlocProvider.of<SettingBloc>(context);
+    return Scaffold(
+      appBar: AppBar(title: Text('Setting'),),
+      body: ListView(
         children: <Widget>[
-          Text(
-            'Setting',
-            style: TextStyle(color: Colors.blue, fontSize: 30),
-          ),
-          FloatingActionButton(onPressed: () {
-            Navigator.pop(context);
+          BlocBuilder(bloc: blocSetting, builder: (_, SettingsState state) {
+            return ListTile(
+              title: Text('Tempe'),
+              isThreeLine: true,
+              subtitle: Text('Use metric measurements for temperature units.'),
+              trailing: Switch(
+                  value: state.temperatureUnits == TemperatureUnits.celsius,
+                  onChanged:(_) => blocSetting.dispatch(TemperatureUnitsToggled())),
+            );
           })
         ],
       ),
     );
   }
+
 }

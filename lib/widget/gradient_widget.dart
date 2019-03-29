@@ -22,9 +22,9 @@ class GradientContainer extends StatelessWidget {
             1.0
           ],
               colors: [
-            color[700],
+            color[900],
             color[500],
-            color[300],
+            color[200],
           ])),
       child: child,
     );

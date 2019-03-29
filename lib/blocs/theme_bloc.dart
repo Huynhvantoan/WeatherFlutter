@@ -26,16 +26,16 @@ class WeatherChanged extends ThemeEvent {
         super([weatherCondition]);
 }
 
-class ThemeBloc extends Bloc<WeatherChanged, ThemeState> {
+class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   @override
   ThemeState get initialState =>
       ThemeState(theme: ThemeData.light(), color: Colors.blue);
 
   @override
   Stream<ThemeState> mapEventToState(
-      ThemeState currentState, WeatherChanged event) async* {
+      ThemeState currentState, ThemeEvent event) async* {
     if (event is WeatherChanged) {
-      _mapWeatherConditionToThemeData(event.weatherCondition);
+      yield _mapWeatherConditionToThemeData(event.weatherCondition);
     }
   }
 }
@@ -56,6 +56,10 @@ ThemeState _mapWeatherConditionToThemeData(WeatherCondition weatherCondition) {
           color: Colors.lightGreen);
       break;
     case WeatherCondition.heavyRain:
+      theme = ThemeState(
+          theme: ThemeData(primaryColor: Colors.indigoAccent),
+          color: Colors.indigo);
+      break;
     case WeatherCondition.lightRain:
       theme = ThemeState(
           theme: ThemeData(primaryColor: Colors.pinkAccent),

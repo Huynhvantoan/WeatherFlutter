@@ -85,7 +85,7 @@ class _WeatherState extends State<WeatherPage> {
               return BlocBuilder(
                   bloc: themeBloc,
                   builder: (_, ThemeState state) {
-                    print(state);
+                    print('color=${state.color}');
                     return GradientContainer(
                       color: state.color,
                       child: RefreshIndicator(
